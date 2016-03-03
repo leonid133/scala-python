@@ -5,7 +5,7 @@ import org.apache.thrift.server._
 import org.apache.thrift.server.TServer.Args
 import scala_calc_thrift._
 
-class ScalaUtilsLogic extends ScalaCalcService.Iface {
+class ScalaCalcLogic extends ScalaCalcService.Iface {
 
  override def add(num1: Double, num2: Double): Double = {
    val addFunction = (num1:Double, num2:Double) => { num1 + num2 }
@@ -15,8 +15,8 @@ class ScalaUtilsLogic extends ScalaCalcService.Iface {
 
  object ScalaCalcServer extends App {
    val serverTransport = new TServerSocket(1234)
-   val logic = new ScalaUtilsLogic()
-   val processor = new ScalaUtilsService.Processor(logic)
+   val logic = new ScalaCalcLogic()
+   val processor = new ScalaCalcService.Processor(logic)
    val plumbing=new Args(serverTransport).processor(processor)
    val server = new TSimpleServer(plumbing)
    println("starting server")
